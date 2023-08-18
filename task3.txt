@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <conio.h>
+
+int main() {
+    std::vector<std::string> names;
+    std::vector<double> grades;
+
+    int num;
+    int i = 0; // Initialize counter
+
+    std::cout << "Enter the number of students: ";
+    std::cin >> num;
+
+    while (i < num) {
+        std::string name;
+        double grade;
+
+        std::cout << "Enter the name of student " << i + 1 << ": ";
+        std::cin.ignore(); // Clear newline from previous input
+        std::getline(std::cin, name);
+
+        std::cout << "Enter the grade for " << name << ": ";
+        std::cin >> grade;
+
+        names.push_back(name);
+        grades.push_back(grade);
+
+        i++; // Increment counter
+    }
+
+    double sum = 0.0;
+    double highest = grades[0];
+    double lowest = grades[0];
+
+    for (double grade : grades) {
+        sum += grade;
+        if (grade > highest) {
+            highest = grade;
+        }
+        if (grade < lowest) {
+            lowest = grade;
+        }
+    }
+
+    double average = sum / num;
+
+    std::cout << "\nStudent Grades Summary:\n";
+    int j = 0;
+    while (j < num) {
+        std::cout << names[j] << ": " << grades[j] << std::endl;
+        j++;
+    }
+
+    std::cout << "\nAverage Grade: " << average << std::endl;
+    std::cout << "Highest Grade: " << highest << std::endl;
+    std::cout << "Lowest Grade: " << lowest << std::endl;
+
+    _getch(); // Wait for a key press before exiting
+
+    return 0;
+}
